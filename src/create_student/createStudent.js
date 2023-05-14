@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Row, Col, Form, Button, Modal } from "react-bootstrap";
+import StudentRegistration from "../reports/studentRegistration";
+import {render} from 'react-dom'
 
 const StudentProfile = () => {
   const [validated, setValidated] = useState(false);
@@ -21,6 +23,37 @@ const StudentProfile = () => {
     setStudentData({ ...studentData, [name]: value });
   };
 
+  
+  // const handleGenerateReport = () => {
+  //   const newWindow = window.open("", "_blank");
+  //   const report = (
+  //     <StudentRegistration studentData={studentData} />
+  //   );
+  //   render(report, newWindow.document.body);
+  // };
+  
+  const openReportInNewTab = () => {
+  const reportData = {
+    studentName: studentData.studentName,
+    email: studentData.email,
+    fatherName: studentData.fatherName,
+    motherName: studentData.motherName,
+    gender: studentData.gender,
+    dateOfBirth: studentData.dateOfBirth,
+    department: studentData.department,
+    mobileNumber: studentData.mobileNumber
+  };
+
+  const reportWindow = window.open("", "_blank");
+  const reportContent = (
+    <StudentRegistration studentData={reportData} />
+  );
+  render(reportContent, reportWindow.document.body);
+};
+
+  
+  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -33,7 +66,8 @@ const StudentProfile = () => {
       .post("http://localhost:3000/students", studentData)
       .then((response) => {
         console.log(response);
-        setShowModal(true); // show the modal
+        // setShowModal(true); // show the modal
+        // openReportInNewTab(); // Open report in a new tab
       })
       .catch((error) => {
         console.log(error); 
@@ -111,6 +145,7 @@ const StudentProfile = () => {
                 onChange={handleChange}
                 required
               >
+                <option>Select an option</option>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
@@ -168,6 +203,12 @@ const StudentProfile = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {/* <Button variant="primary" type="button" onClick={handleGenerateReport}>
+              Generate Report
+            </Button>
+            <Button variant="primary" type="button" onClick={handleGenerateReport}>
+              Generate Report in New Tab
+            </Button> */}
           </Form>
         </Col>
       </Row>
@@ -179,8 +220,9 @@ const StudentProfile = () => {
         <Modal.Footer>
             <Button variant="success" onClick={() => setShowModal(false)}>Okay</Button>
         </Modal.Footer>
-       </Modal>
+       </Modal>    
     </Container>
+    
   );
 };
 

@@ -13,7 +13,7 @@ function NavbarMenu() {
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-between">
           <Nav>
             <Nav.Link as={Link} to="/create-student">Create Student</Nav.Link>
-            <Nav.Link>Show Student</Nav.Link>
+            <Nav.Link as={Link} to="/show-student">Show Student</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Student" id="basic-nav-dropdown">
