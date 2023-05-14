@@ -3,6 +3,9 @@ import { Container } from 'react-bootstrap';
 import SearchBar from './searchBar';
 import TableComponent from './tableComponent';
 import PaginationBar from './pagination';
+import { pdf } from '@react-pdf/renderer';
+import Report from '../reports/studentReport';
+import { saveAs } from 'file-saver';
 
 const ShowStudent = () => {
   const [rowData, setRowData] = useState([]);
@@ -22,6 +25,19 @@ const ShowStudent = () => {
         setFilteredData(data);
       });
   }, []);
+
+  const handleGeneratePDF = async () => {
+    const doc = (
+      <Report students={filteredData} />
+    );
+    const asPdf = pdf([]);
+    asPdf.updateContainer(doc);
+    const blob = await asPdf.toBlob();
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+  };
+  
+  
 
   const handleSearch = useCallback(() => {
     const filtered = rowData.filter(row =>
@@ -84,6 +100,7 @@ const ShowStudent = () => {
         onSave={handleSave}
         onDelete={handleDelete}
         editingId={editingId}
+        onGeneratePDF={handleGeneratePDF}
       />
       <TableComponent
         rows={currentRows}

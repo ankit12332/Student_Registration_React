@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputGroup, FormControl, Button } from 'react-bootstrap';
 
-const SearchBar = ({ searchText, onSearchChange, onSearchClick, onSave, onDelete, editingId }) => (
+const SearchBar = ({ searchText, onSearchChange, onSearchClick, onSave, onDelete, editingId, onGeneratePDF }) => (
   <div className="container mb-3 mt-3 p-3" style={{backgroundColor:'#000'}}>
     <div className="row">
       <div className="col-lg-3 col-md-6 col-sm-12">
@@ -30,6 +30,13 @@ const SearchBar = ({ searchText, onSearchChange, onSearchClick, onSave, onDelete
           onClick={() => onDelete(editingId)}
         >
           Delete
+        </Button>
+        <Button
+          className='col-lg-5 btn btn-primary'
+          style={{ marginLeft: '10px' }}
+          onClick={onGeneratePDF}
+        >
+          Generate PDF
         </Button>
       </div>
     </div>
