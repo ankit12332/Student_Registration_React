@@ -13,34 +13,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textDecoration: 'underline',
   },
-  section: {
-    marginBottom: 20,
-  },
-  field: {
-    flexDirection: 'row',
-    marginBottom: 10,
-  },
-  fieldTitle: {
-    width: '40%',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  fieldValue: {
-    width: '60%',
-    fontSize: 14,
-  },
-  header: {
-    marginBottom: 20,
-  },
-  headerTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  line: {
-    borderBottomColor: '#000000',
-    borderBottomWidth: 1,
-    marginBottom: 10,
-  },
   footer: {
     position: 'absolute',
     bottom: 30,
@@ -48,6 +20,39 @@ const styles = StyleSheet.create({
     right: 30,
     textAlign: 'center',
     fontSize: 10,
+  },
+  section: {
+    marginBottom: 20,
+  },
+  line: {
+    borderBottomColor: '#000000',
+    borderBottomWidth: 1,
+    marginBottom: 10,
+  },
+  leftColumn: {
+    width: '50%',
+    fontSize: 12,
+  },
+  rightColumn: {
+    width: '50%',
+    fontSize: 12,
+    textAlign: 'right',
+  },
+  columnContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  column: {
+    width: '20%',
+    paddingLeft: 5,
+  },
+  columnTitle: {
+    fontWeight: 'extrabold',
+    fontSize:'13px'
+  },
+  columnValue: {
+    fontSize:'10px',
+    marginTop:'10px'
   },
 });
 
@@ -60,39 +65,45 @@ const StudentRegistration = ({ studentData }) => {
             <Text style={styles.title}>Student Registration</Text>
             <View style={styles.line} />
           </View>
-          <Text style={styles.header}>Student Information</Text>
+
           <View style={styles.section}>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Student Name:</Text>
-              <Text style={styles.fieldValue}>{studentData.studentName}</Text>
+            <View style={styles.columnContainer}>
+              <View style={styles.leftColumn}>
+                <Text>Student Name: {studentData.studentName}</Text>
+                <Text>Email: {studentData.email}</Text>
+              </View>
+              <View style={styles.rightColumn}>
+                <Text>Date of Birth: {studentData.dateOfBirth}</Text>
+              </View>
             </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Email:</Text>
-              <Text style={styles.fieldValue}>{studentData.email}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Father's Name:</Text>
-              <Text style={styles.fieldValue}>{studentData.fatherName}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Mother's Name:</Text>
-              <Text style={styles.fieldValue}>{studentData.motherName}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Gender:</Text>
-              <Text style={styles.fieldValue}>{studentData.gender}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Date of Birth:</Text>
-              <Text style={styles.fieldValue}>{studentData.dateOfBirth}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Department:</Text>
-              <Text style={styles.fieldValue}>{studentData.department}</Text>
-            </View>
-            <View style={styles.field}>
-              <Text style={styles.fieldTitle}>Mobile Number:</Text>
-              <Text style={styles.fieldValue}>{studentData.mobileNumber}</Text>
+          </View>
+
+          <View style={styles.line} />
+
+          <View style={styles.section}>
+            <Text style={styles.title}>Results</Text>
+            <View style={styles.line} />
+            <View style={styles.columnContainer}>
+              <View style={styles.column}>
+                <Text style={styles.columnTitle}>Father's Name</Text>
+                <Text style={styles.columnValue}>{studentData.fatherName}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={styles.columnTitle}>Mother's Name</Text>
+                <Text style={styles.columnValue}>{studentData.motherName}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={styles.columnTitle}>Gender</Text>
+                <Text style={styles.columnValue}>{studentData.gender}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={styles.columnTitle}>Department</Text>
+                <Text style={styles.columnValue}>{studentData.department}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={styles.columnTitle}>Mobile Number</Text>
+                <Text style={styles.columnValue}>{studentData.mobileNumber}</Text>
+              </View>
             </View>
           </View>
           <View style={styles.footer}>
@@ -104,4 +115,4 @@ const StudentRegistration = ({ studentData }) => {
   );
 };
 
-export default StudentRegistration
+export default StudentRegistration;
