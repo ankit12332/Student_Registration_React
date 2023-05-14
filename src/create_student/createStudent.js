@@ -22,6 +22,15 @@ const StudentProfile = () => {
     const { name, value } = event.target;
     setStudentData({ ...studentData, [name]: value });
   };
+
+  
+  // const handleGenerateReport = () => {
+  //   const newWindow = window.open("", "_blank");
+  //   const report = (
+  //     <StudentRegistration studentData={studentData} />
+  //   );
+  //   render(report, newWindow.document.body);
+  // };
   
   const openReportInNewTab = () => {
   const reportData = {
@@ -42,10 +51,7 @@ const StudentProfile = () => {
   render(reportContent, reportWindow.document.body);
 };
 
-  const generateReportAndCloseModal = () => {
-    openReportInNewTab();
-    setShowModal(false);
-  };
+  
   
 
   const handleSubmit = (event) => {
@@ -61,7 +67,7 @@ const StudentProfile = () => {
       .then((response) => {
         console.log(response);
         setShowModal(true); // show the modal
-        // openReportInNewTab(); // Open report in a new tab
+        openReportInNewTab(); // Open report in a new tab
       })
       .catch((error) => {
         console.log(error); 
@@ -197,6 +203,12 @@ const StudentProfile = () => {
             <Button variant="primary" type="submit">
               Submit
             </Button>
+            {/* <Button variant="primary" type="button" onClick={handleGenerateReport}>
+              Generate Report
+            </Button>
+            <Button variant="primary" type="button" onClick={handleGenerateReport}>
+              Generate Report in New Tab
+            </Button> */}
           </Form>
         </Col>
       </Row>
@@ -206,7 +218,7 @@ const StudentProfile = () => {
         </Modal.Header>
         <Modal.Body>Student is registered successfully.</Modal.Body>
         <Modal.Footer>
-            <Button variant="success" onClick={generateReportAndCloseModal}>Okay</Button>
+            <Button variant="success" onClick={() => setShowModal(false)}>Okay</Button>
         </Modal.Footer>
        </Modal>    
     </Container>
